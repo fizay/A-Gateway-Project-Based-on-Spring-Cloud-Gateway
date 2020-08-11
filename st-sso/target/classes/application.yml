@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: sso-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/summertraining?serverTimezone=GMT%2B8&
+         useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: root
+    
+server:
+  port: 8001
+  
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: C:/Java/SummerTraining/st-sso
+      pattern: common
+      buffered: false
+
+#spring整合Mybatis
+mybatis:
+  type-aliases-package: com.fizay.vo 
+  mapper-locations: classpath:/mybatis/mappers/*.xml
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1001/eureka

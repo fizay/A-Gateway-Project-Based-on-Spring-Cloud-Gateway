@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fizay.dao.UserDao">
+	<select id="findUserInfo" resultType="User">
+		select id, username, salt,
+		email, phone, qpsLevel, deptId, note from cmsoft_users where id =
+		#{id}
+	</select>
+
+	<select id="findRolesIdsByUserId" resultType="int">
+		select role_id from
+		cmsoft_users_roles where id = #{id}
+	</select>
+
+	<select id="findPermissionsIdsByRolesIds" resultType="int">
+		select permission_id from cmsoft_roles_permissions where role_id in
+		<foreach collection="rolesIds" open="(" close=")"
+			separator="," item="roleId">
+			#{roleId}
+		</foreach>
+	</select>
+
+	<select id="findPermissionsByPermissionsIds" resultType="string">
+		select permission from cmsoft_permissions where id in
+		<foreach collection="permissionsIds" open="(" close=")"
+			separator="," item="permissionId">
+			#{permissionId}
+		</foreach>
+	</select>
+
+	<select id="findResourceIdbyPath" resultType="int">
+		select id from
+		cmsoft_resources where url = #{path}
+	</select>
+
+	<select id="findPermissionIdByResourceId" resultType="int">
+		select
+		permission_id from
+		cmsoft_resources_permissions where resource_id =
+		#{resourceId}
+	</select>
+
+	<select id="findPermissionByPermissionId" resultType="string">
+		select
+		permission from
+		cmsoft_permissions where id = #{permissionId}
+	</select>
+
+	<select id="findUserInfoByUsername" resultType="User">
+		select id, username, salt,
+		email, phone, qpsLevel, deptId, note from cmsoft_users where username =
+		#{username}
+	</select>
+	
+</mapper>

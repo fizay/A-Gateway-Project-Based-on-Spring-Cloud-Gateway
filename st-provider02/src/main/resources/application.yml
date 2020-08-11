@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: provider
+    
+server:
+  port: 2101
+  
+  tomcat: #配置输出Tomcat日志
+    accesslog:
+      enabled: true
+      directory: C:/Java/SummerTraining/st-provider02
+      pattern: common
+      buffered: false
+      
+      #  先把debug关了，打印太多信息
+#logging:  #配置控制台打印Tomcat日志
+#  level:
+#    org.apache.tomcat: debug
+#    org.apache.catalina: debug  
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1001/eureka

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home page</title>
+<style type="text/css">
+span {
+	width: 100px;
+	height: 100px;
+	border: 2px solid #000;
+	font-size: 35;
+	display: block;
+}
+
+.notNeedToken {
+	background-color: #00a7d0;
+}
+
+.needToken {
+	background-color: red;
+}
+</style>
+</head>
+<body>
+	<!-- 缺陷：请求参数的拼接应该使用前端代码完成 -->
+	<span id="no1" class="notNeedToken"> <a
+		href="http://localhost:3001/provider-service/getInfo?username=FUZIYAN&para=CMSOFT">需要登录</a>
+	</span>
+	<br>
+	<span id="no2" class="needToken"> <a
+		href="http://localhost:3001/provider-service/authLimit">需要登录且授权</a>
+	</span>
+	<br>
+	<span id="no3" class="needToken">需要登录且验证权限</span>
+</body>
+</html>

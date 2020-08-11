@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: web-service
+      
+server:
+  port: 6001
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: C:/Java/SummerTraining/st-web
+      pattern: common
+      buffered: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1001/eureka

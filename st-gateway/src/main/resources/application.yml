@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      #路由1：所有访问/index首页的请求会被qps限流;  只有访问index首页可以不需要携带请求头CMSOFT_TOKEN
+      - id: accessIndexPage    
+        uri: http://localhost:6001/index
+        predicates:
+        - Path=/index
+        filters:
+        - name: RequestRateLimiter  #这个名字不能动
+          args:
+            key-resolver: '#{@globalKeyResolver}' #获取spring注册bean中名为globalKeyResolver的bean
+            redis-rate-limiter.replenishRate: 10
+            redis-rate-limiter.burstCapacity: 10
+       #路由2：要想访问后台微服务，请求头中就必须要含有CMSOFT_TOKEN才能实现路由转发！！
+       #路由2现已改为java编码格式
+  application:
+    name: gateway-limiter
+  redis:
+    host: 192.168.2.131
+    port: 6379
+    database: 0        
+
+server:
+  port: 3001
+      
+      
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1001/eureka

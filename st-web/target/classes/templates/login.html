@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录页面</title>
+</head>
+<body>
+	<h1>登录页面</h1>
+	<br>
+	<!--  提交地址到SSO微服务进行验证，把访问前的路径一并带上 -->
+	<form action="http://localhost:8001/userVerify" method="post">
+		<input type="text" name="username" value="FUZIYAN"> <br>
+		<input type="password" name="password" value="123456"> <br>
+		<!-- 固定/authLimit会导致问题：使用ZHANGSAN登录，权限只有view，而auth需要root -->
+		<input type="hidden" name="preRequestPath" value="/authLimit">
+		<input type="submit" value="登录">
+	</form>
+</body>
+</html>
